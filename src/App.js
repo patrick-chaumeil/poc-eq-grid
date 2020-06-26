@@ -71,7 +71,7 @@ export default function App() {
       >
         {components.map((o, i) => (
           <Paper {...o} onClick={() => setSelected(i)}>
-            coucou
+            I'm {i}
           </Paper>
         ))}
       </eq-grid>
