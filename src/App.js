@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import {
   AppBar,
+  Box,
   Button,
   Container,
   Paper,
@@ -11,9 +12,42 @@ import {
 import { initEqGrid } from "eq-grid";
 import cx from "classnames";
 
-initEqGrid(16, 1, "rem");
+initEqGrid(4, 1, "rem");
 export default function App() {
-  const [components, setComponents] = useState([]);
+  const [components, setComponents] = useState([
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col-2" },
+    { className: "eq-col" },
+    { className: "eq-col-3" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-row-2" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-row-3 eq-col-2" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col-5-collapse" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col" },
+    { className: "eq-col-max" },
+    { className: "eq-col" },
+    { className: "eq-col" }
+  ]);
   const [selectedIndex, setSelected] = useState(-1);
   const selectedComponent =
     (selectedIndex >= 0 && components[selectedIndex]) || undefined;
@@ -47,7 +81,9 @@ export default function App() {
           >
             Insert
           </Button>
-          <Typography>{selectedIndex}</Typography>
+          <Typography variant="subtitle2">
+            {selectedIndex} is selected
+          </Typography>
           {selectedComponent && (
             <TextField
               label="Class"
@@ -70,9 +106,17 @@ export default function App() {
         })}
       >
         {components.map((o, i) => (
-          <Paper {...o} onClick={() => setSelected(i)}>
+          <Box
+            m={1}
+            component={Paper}
+            key={i}
+            {...o}
+            title={o.className}
+            onClick={() => setSelected(i)}
+            elevation={3}
+          >
             I'm {i}
-          </Paper>
+          </Box>
         ))}
       </eq-grid>
     </Container>
