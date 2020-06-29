@@ -42,7 +42,7 @@ export default function App() {
         <Toolbar>
           <Button
             onClick={() =>
-              insertComponent({ classNames: "eq-col" }, selectedIndex)
+              insertComponent({ className: "eq-col" }, selectedIndex)
             }
           >
             Insert
@@ -53,11 +53,11 @@ export default function App() {
               label="Class"
               onChange={e => {
                 updateComponent(
-                  { ...selectedComponent, classNames: e.target.value },
+                  { ...selectedComponent, className: e.target.value },
                   selectedIndex
                 );
               }}
-              value={selectedComponent.classNames}
+              value={selectedComponent.className}
             />
           )}
         </Toolbar>
