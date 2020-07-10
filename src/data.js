@@ -2,7 +2,7 @@ import { v4 } from "uuid";
 
 const data = [
   {
-    component: "text",
+    component: "formName",
     className: "eq-col-6",
     options: { label: "text 1", multiline: true }
   },
