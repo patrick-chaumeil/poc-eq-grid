@@ -1,6 +1,11 @@
 import React from "react";
-import { Paper } from "@material-ui/core";
+import { Paper, Typography } from "@material-ui/core";
 
-const PaperComp = ({ children }) => <Paper>{children}</Paper>;
+const PaperComp = ({ label, children }) => (
+  <Paper>
+    <Typography variant="h6">{label}</Typography>
+    {children}
+  </Paper>
+);
 
 export default PaperComp;

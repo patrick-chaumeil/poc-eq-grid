@@ -1,5 +1,5 @@
 import React from "react";
-import { Box, Paper, Typography } from "@material-ui/core";
+import { Box, Typography } from "@material-ui/core";
 import Text from "./comps/Text";
 import DateComp from "./comps/Date";
 import PaperComp from "./comps/Paper";
@@ -9,7 +9,7 @@ const Item = ({
   options,
   children,
   onClick,
-  bgcolor
+  isSelected
 }) => {
   let TheComp;
   switch (component) {
@@ -30,10 +30,13 @@ const Item = ({
       );
   }
   return (
-    <Box m={1} className={className} onClick={onClick} bgcolor={bgcolor} clone>
-      <Paper elevation={3}>
-        <TheComp {...options}>{children}</TheComp>
-      </Paper>
+    <Box
+      className={className}
+      onClick={onClick}
+      border={2}
+      borderColor={isSelected ? "primary.main" : "transparent"}
+    >
+      <TheComp {...options}>{children}</TheComp>
     </Box>
   );
 };
