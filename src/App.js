@@ -114,6 +114,7 @@ export default function App() {
             title={o.className}
             onClick={() => setSelected(i)}
             elevation={3}
+            bgcolor={selectedIndex === i ? "action.focus" : undefined}
           >
             I'm {i}
           </Box>
