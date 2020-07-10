@@ -21,13 +21,7 @@ const useStyles = makeStyles({
 const PropsPanel = () => {
   const classes = useStyles();
   return (
-    <Box
-      position="absolute"
-      bottom={0}
-      left={0}
-      right={0}
-      bgcolor="background.paper"
-    >
+    <Box bgcolor="background.paper">
       <Divider />
       <Box className={classes.content}>
         <Add />
