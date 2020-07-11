@@ -13,13 +13,15 @@ export default function App() {
     <Box
       bgcolor="background.default"
       display="flex"
-      flexDirection="column"
-      height="calc(100vh - 16px)"
+      flexDirection="row"
+      height="100vh"
     >
-      <Box flex={1} onClick={() => dispatch(selectItem(undefined))}>
+      <Box flex={1} m={1} onClick={() => dispatch(selectItem(undefined))}>
         <Container items={form} />
       </Box>
-      <PropsPanel />
+      <Box width={360}>
+        <PropsPanel />
+      </Box>
     </Box>
   )
 }

@@ -5,6 +5,7 @@ import MenuItem from '@material-ui/core/MenuItem'
 import { useDispatch } from 'react-redux'
 import * as Comps from '../comps'
 import { addItem } from '../reducer'
+import { Box } from '@material-ui/core'
 
 const Add = () => {
   const dispatch = useDispatch()
@@ -26,7 +27,12 @@ const Add = () => {
 
   return (
     <>
-      <Button variant="contained" color="primary" onClick={handleClick}>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleClick}
+        size="small"
+      >
         Add
       </Button>
       <Menu
