@@ -8,7 +8,22 @@ export const selectForm = createSelector(
   ({ form }) => form
 );
 
+function findByIdRec(arr, id) {
+  if (!arr) {
+    return;
+  }
+  const idx = arr.findIndex(o => o.id === id);
+  if (idx > -1) {
+    return arr[idx];
+  } else {
+    return arr.map(o => findByIdRec(o.items, id)).find(o => !!o);
+  }
+}
 export const selectSelectedItem = createSelector(
   [selectDomain],
-  ({ selectedId, form }) => ({ selectedId })
+  ({ selectedId, form }) => {
+    const item = findByIdRec(form, selectedId);
+    console.log(item);
+    return item;
+  }
 );

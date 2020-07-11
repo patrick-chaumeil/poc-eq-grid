@@ -3,7 +3,9 @@ import data from "./data";
 
 export const selectItem = createAction("SELECT_ITEM");
 export const addItem = createAction("ADD_ITEM");
-export const removeItem = createAction("REMVOVE_ITEM");
+export const removeItem = createAction("REMOVE_ITEM");
+export const setItemColumns = createAction("SET_ITEM_COLUMNS");
+export const setItemRows = createAction("SET_ITEM_ROWS");
 
 function addNextToItemByIdRec(arr, id, item) {
   if (!arr) {

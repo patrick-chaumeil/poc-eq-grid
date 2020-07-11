@@ -18,15 +18,20 @@ const DefaultComp = ({ compName }) => (
   <Typography color="error">unknown component type *{compName}*</Typography>
 );
 
-const Item = ({ className, component, options, children, id }) => {
+const Item = ({ layout, component, options, children, id }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
-  const { selectedId } = useSelector(selectSelectedItem);
+  const { id: selectedId } = useSelector(selectSelectedItem) || {};
 
   const TheComp = Comps[component].render;
   return (
     <Box
-      className={cx(className, classes.root)}
+      className={cx(
+        classes.root,
+        `eq-col-${layout.eqCol}`,
+        layout.customCol,
+        `eq-row-${layout.eqRow}`
+      )}
       onClick={e => {
         dispatch(selectItem(id));
         e.stopPropagation();
