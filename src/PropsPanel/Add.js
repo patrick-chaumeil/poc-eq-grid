@@ -2,12 +2,17 @@ import React from 'react'
 import Button from '@material-ui/core/Button'
 import Menu from '@material-ui/core/Menu'
 import MenuItem from '@material-ui/core/MenuItem'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import * as Comps from '../comps'
 import { addItem } from '../reducer'
+import { selectSelectedItem } from '../selectors'
+import { Switch, Divider, FormControlLabel, Box } from '@material-ui/core'
 
 const Add = () => {
+  const insertRef = React.useRef()
   const dispatch = useDispatch()
+  const selectedItem = useSelector(selectSelectedItem)
+  const { isContainer } = Comps[(selectedItem?.component)] || {}
 
   const [anchorEl, setAnchorEl] = React.useState(null)
 
@@ -20,7 +25,9 @@ const Add = () => {
   }
 
   const handleSelect = value => {
-    dispatch(addItem(value))
+    const shouldInsert = insertRef?.current?.checked
+    console.log(insertRef?.current)
+    dispatch(addItem({ ...value, shouldInsert }))
     setAnchorEl(null)
   }
 
@@ -51,6 +58,17 @@ const Add = () => {
             {key}
           </MenuItem>
         ))}
+        {isContainer && (
+          <>
+            <Divider />
+            <Box ml={2} mt={1}>
+              <FormControlLabel
+                control={<Switch inputRef={insertRef} />}
+                label="Insert"
+              />
+            </Box>
+          </>
+        )}
       </Menu>
     </>
   )

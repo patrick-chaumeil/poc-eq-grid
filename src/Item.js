@@ -1,7 +1,7 @@
 import React from 'react'
 import { Box, Typography } from '@material-ui/core'
 import * as Comps from './comps'
-import { makeStyles } from '@material-ui/core/styles'
+import makeStyles from '@material-ui/core/styles/makeStyles'
 import cx from 'clsx'
 import { useDispatch, useSelector } from 'react-redux'
 import { selectSelectedItem } from './selectors'

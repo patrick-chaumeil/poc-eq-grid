@@ -7,7 +7,8 @@ const Remove = () => {
   const dispatch = useDispatch()
   return (
     <Button
-      variant="outlined"
+      variant="text"
+      color="secondary"
       onClick={() => dispatch(removeItem())}
       size="small"
     >
