@@ -1,17 +1,17 @@
-import React from "react";
-import cx from "classnames";
-import Item from "./Item";
-import { initEqGrid } from "eq-grid";
+import React from 'react'
+import cx from 'classnames'
+import Item from './Item'
+import { initEqGrid } from 'eq-grid'
 
-initEqGrid(4, 1, "rem", 6);
+initEqGrid(4, 1, 'rem', 6)
 
 const Container = ({ items }) => {
   return (
     <eq-grid
       className={cx({
-        "eq-grid-dense": true,
-        "eq-grid-2-collapse": false,
-        "eq-grid-gap-2": false
+        'eq-grid-dense': true,
+        'eq-grid-2-collapse': false,
+        'eq-grid-gap-2': false,
       })}
     >
       {items?.map(o => (
@@ -20,7 +20,7 @@ const Container = ({ items }) => {
         </Item>
       ))}
     </eq-grid>
-  );
-};
+  )
+}
 
-export default Container;
+export default Container

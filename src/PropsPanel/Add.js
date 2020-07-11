@@ -1,31 +1,31 @@
-import React from "react";
-import Button from "@material-ui/core/Button";
-import Menu from "@material-ui/core/Menu";
-import MenuItem from "@material-ui/core/MenuItem";
-import { useDispatch } from "react-redux";
-import * as Comps from "../comps";
-import { addItem } from "../reducer";
+import React from 'react'
+import Button from '@material-ui/core/Button'
+import Menu from '@material-ui/core/Menu'
+import MenuItem from '@material-ui/core/MenuItem'
+import { useDispatch } from 'react-redux'
+import * as Comps from '../comps'
+import { addItem } from '../reducer'
 
 const Add = () => {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch()
 
-  const [anchorEl, setAnchorEl] = React.useState(null);
+  const [anchorEl, setAnchorEl] = React.useState(null)
 
   const handleClick = e => {
-    setAnchorEl(e.currentTarget);
-  };
+    setAnchorEl(e.currentTarget)
+  }
 
   const handleClose = () => {
-    setAnchorEl(null);
-  };
+    setAnchorEl(null)
+  }
 
   const handleSelect = value => {
-    dispatch(addItem(value));
-    setAnchorEl(null);
-  };
+    dispatch(addItem(value))
+    setAnchorEl(null)
+  }
 
   return (
-    <div>
+    <>
       <Button variant="contained" color="primary" onClick={handleClick}>
         Add
       </Button>
@@ -37,13 +37,18 @@ const Add = () => {
         onClose={handleClose}
       >
         {Object.entries(Comps).map(([key, value]) => (
-          <MenuItem key={key} onClick={() => handleSelect(key)}>
+          <MenuItem
+            key={key}
+            onClick={() =>
+              handleSelect({ component: key, options: value.defaultOptions })
+            }
+          >
             {key}
           </MenuItem>
         ))}
       </Menu>
-    </div>
-  );
-};
+    </>
+  )
+}
 
-export default Add;
+export default Add

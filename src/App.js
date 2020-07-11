@@ -1,14 +1,14 @@
-import React from "react";
-import Container from "./Container";
-import PropsPanel from "./PropsPanel";
-import { Box } from "@material-ui/core";
-import { useSelector, useDispatch } from "react-redux";
-import { selectForm } from "./selectors";
-import { selectItem } from "./reducer";
+import React from 'react'
+import Container from './Container'
+import PropsPanel from './PropsPanel'
+import { Box } from '@material-ui/core'
+import { useSelector, useDispatch } from 'react-redux'
+import { selectForm } from './selectors'
+import { selectItem } from './reducer'
 
 export default function App() {
-  const form = useSelector(selectForm);
-  const dispatch = useDispatch();
+  const form = useSelector(selectForm)
+  const dispatch = useDispatch()
   return (
     <Box
       bgcolor="background.default"
@@ -21,5 +21,5 @@ export default function App() {
       </Box>
       <PropsPanel />
     </Box>
-  );
+  )
 }

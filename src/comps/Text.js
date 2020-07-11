@@ -1,5 +1,5 @@
-import React from "react";
-import { TextField } from "@material-ui/core";
+import React from 'react'
+import { TextField } from '@material-ui/core'
 
 const Text = ({ label, multiline }) => (
   <TextField
@@ -10,6 +10,10 @@ const Text = ({ label, multiline }) => (
     rows={multiline ? 3 : undefined}
     fullWidth
   />
-);
+)
 
-export default Text;
+export default Text
+
+export const render = Text
+
+export const defaultOptions = { label: 'Text', multiline: false }
