@@ -25,6 +25,7 @@ export default () => {
   const dispatch = useDispatch();
   const { layout } = useSelector(selectSelectedItem);
   const eqCol = layout?.eqCol;
+  const custom = layout?.custom;
 
   function handleColumnsClick(e) {
     const value =
@@ -32,6 +33,10 @@ export default () => {
         ? "max"
         : parseInt(e.target.innerText, 10) || undefined;
     dispatch(setItemLayout({ ...layout, eqCol: value }));
+  }
+
+  function handleCustomChange(e) {
+    dispatch(setItemLayout({ ...layout, custom: e.target.value }));
   }
 
   return (
@@ -47,7 +52,13 @@ export default () => {
         <Button variant={eqCol === 6 && "contained"}>6</Button>
         <Button variant={eqCol === "max" && "contained"}>max</Button>
       </ButtonGroup>
-      <TextField label="Custom" variant="outlined" size="small" />
+      <TextField
+        label="Custom"
+        variant="outlined"
+        size="small"
+        value={custom}
+        onChange={handleCustomChange}
+      />
     </Box>
   );
 };
