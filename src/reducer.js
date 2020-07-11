@@ -44,7 +44,7 @@ const rootReducer = createReducer(initialState, {
     const item = {
       id: nanoid(),
       component,
-      className: "eq-col-2",
+      layout: { eqCol: "max" },
       options
     };
     if (state.selectedId) {
