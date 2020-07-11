@@ -5,7 +5,6 @@ import MenuItem from '@material-ui/core/MenuItem'
 import { useDispatch } from 'react-redux'
 import * as Comps from '../comps'
 import { addItem } from '../reducer'
-import { Box } from '@material-ui/core'
 
 const Add = () => {
   const dispatch = useDispatch()

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Divider, Paper } from '@material-ui/core'
+import { Box, Paper } from '@material-ui/core'
 import Columns from './Columns'
 import Rows from './Rows'
 import makeStyles from '@material-ui/styles/makeStyles'

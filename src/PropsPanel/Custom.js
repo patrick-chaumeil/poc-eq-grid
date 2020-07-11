@@ -1,12 +1,5 @@
 import React from 'react'
-import {
-  Box,
-  Button,
-  ButtonGroup,
-  Typography,
-  TextField,
-} from '@material-ui/core'
-import { makeStyles } from '@material-ui/core/styles'
+import { TextField } from '@material-ui/core'
 import { selectSelectedItem } from '../selectors'
 import { useDispatch, useSelector } from 'react-redux'
 import { setItemLayout } from '../reducer'
