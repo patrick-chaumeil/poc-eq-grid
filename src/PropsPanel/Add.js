@@ -5,7 +5,8 @@ import MenuItem from "@material-ui/core/MenuItem";
 import { useDispatch } from "react-redux";
 import * as Comps from "../comps";
 import { addItem } from "../reducer";
-export default function SimpleMenu() {
+
+const Add = () => {
   const dispatch = useDispatch();
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -43,4 +44,6 @@ export default function SimpleMenu() {
       </Menu>
     </div>
   );
-}
+};
+
+export default Add;
