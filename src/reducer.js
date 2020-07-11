@@ -1,18 +1,19 @@
-import { createReducer } from "@reduxjs/toolkit";
+import { createReducer, createAction } from "@reduxjs/toolkit";
+import data from "./data";
 
-const rootReducer = createReducer([], {
-  ADD_TODO(state, action) {
-    // "mutate" the array by calling push()
-    state.push(action.payload);
-  },
-  TOGGLE_TODO(state, action) {
-    const todo = state[action.payload.index];
-    // "mutate" the object by overwriting a field
-    todo.completed = !todo.completed;
-  },
-  REMOVE_TODO(state, action) {
-    // Can still return an immutably-updated value if we want to
-    return state.filter((todo, i) => i !== action.payload.index);
+export const addItem = createAction("ADD_ITEM");
+
+const initialState = {
+  form: data
+};
+
+const rootReducer = createReducer(initialState, {
+  [addItem]: (state, action) => {
+    const item = {
+      component: action.payload,
+      className: "eq-col"
+    };
+    state.form.push(item);
   }
 });
 

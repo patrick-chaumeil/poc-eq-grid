@@ -2,8 +2,9 @@ import React from "react";
 import Button from "@material-ui/core/Button";
 import Menu from "@material-ui/core/Menu";
 import MenuItem from "@material-ui/core/MenuItem";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import * as Comps from "../comps";
+import { addItem } from "../reducer";
 export default function SimpleMenu() {
   const dispatch = useDispatch();
 
@@ -18,7 +19,7 @@ export default function SimpleMenu() {
   };
 
   const handleSelect = value => {
-    dispatch({ type: "coucou", value });
+    dispatch(addItem(value));
     setAnchorEl(null);
   };
 
