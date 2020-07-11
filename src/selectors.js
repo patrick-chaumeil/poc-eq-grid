@@ -23,7 +23,6 @@ export const selectSelectedItem = createSelector(
   [selectDomain],
   ({ selectedId, form }) => {
     const item = findByIdRec(form, selectedId);
-    console.log(item);
     return item;
   }
 );

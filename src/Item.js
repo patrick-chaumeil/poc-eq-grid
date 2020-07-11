@@ -22,15 +22,17 @@ const Item = ({ layout, component, options, children, id }) => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { id: selectedId } = useSelector(selectSelectedItem) || {};
-
+  const { eqCol, custom, eqRow } = layout;
   const TheComp = Comps[component].render;
   return (
     <Box
       className={cx(
         classes.root,
-        `eq-col-${layout.eqCol}`,
-        layout.customCol,
-        `eq-row-${layout.eqRow}`
+        {
+          [`eq-col-${eqCol}`]: eqCol,
+          [`eq-row-${eqRow}`]: eqRow
+        },
+        custom
       )}
       onClick={e => {
         dispatch(selectItem(id));
