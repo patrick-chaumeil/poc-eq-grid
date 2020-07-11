@@ -50,6 +50,8 @@ const rootReducer = createReducer(initialState, {
     } else {
       state.form.push(item);
     }
+    // enfin sélectionne l’item ajouté
+    state.selectedId = item.id;
   },
   [removeItem]: (state, action) => {
     if (state.selectedId) {
