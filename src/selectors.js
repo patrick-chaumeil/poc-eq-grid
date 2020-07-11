@@ -7,3 +7,8 @@ export const selectForm = createSelector(
   [selectDomain],
   ({ form }) => form
 );
+
+export const selectSelectedItem = createSelector(
+  [selectDomain],
+  ({ selectedId, form }) => ({ selectedId })
+);
