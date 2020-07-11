@@ -5,6 +5,8 @@ import Rows from "./Rows";
 import makeStyles from "@material-ui/styles/makeStyles";
 import Add from "./Add";
 import Remove from "./Remove";
+import { useSelector } from "react-redux";
+import { selectSelectedItem } from "../selectors";
 
 const useStyles = makeStyles({
   content: {
@@ -21,14 +23,19 @@ const useStyles = makeStyles({
 
 const PropsPanel = () => {
   const classes = useStyles();
+  const selectedItem = useSelector(selectSelectedItem);
   return (
     <Box bgcolor="background.paper">
       <Divider />
       <Box className={classes.content}>
         <Add />
-        <Remove />
-        <Columns />
-        <Rows />
+        {selectedItem && (
+          <>
+            <Remove />
+            <Columns />
+            <Rows />
+          </>
+        )}
       </Box>
     </Box>
   );

@@ -4,8 +4,7 @@ import data from "./data";
 export const selectItem = createAction("SELECT_ITEM");
 export const addItem = createAction("ADD_ITEM");
 export const removeItem = createAction("REMOVE_ITEM");
-export const setItemColumns = createAction("SET_ITEM_COLUMNS");
-export const setItemRows = createAction("SET_ITEM_ROWS");
+export const setItemLayout = createAction("SET_ITEM_LAYOUT");
 
 function addNextToItemByIdRec(arr, id, item) {
   if (!arr) {
@@ -18,6 +17,7 @@ function addNextToItemByIdRec(arr, id, item) {
     arr.forEach(o => addNextToItemByIdRec(o.items, id, item));
   }
 }
+
 const initialState = {
   selectedId: undefined,
   form: data
@@ -32,6 +32,18 @@ function removeItemByIdRec(arr, id) {
     arr.splice(idx, 1);
   } else {
     arr.forEach(o => removeItemByIdRec(o.items, id));
+  }
+}
+
+function setLayoutRec(arr, id, layout) {
+  if (!arr) {
+    return;
+  }
+  const idx = arr.findIndex(o => o.id === id);
+  if (idx > -1) {
+    arr[idx].layout = layout;
+  } else {
+    arr.forEach(o => setLayoutRec(o.items, id, layout));
   }
 }
 
@@ -59,6 +71,10 @@ const rootReducer = createReducer(initialState, {
     if (state.selectedId) {
       removeItemByIdRec(state.form, state.selectedId);
     }
+  },
+  [setItemLayout]: (state, action) => {
+    const layout = action.payload;
+    setLayoutRec(state.form, state.selectedId, layout);
   }
 });
 
