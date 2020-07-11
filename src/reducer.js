@@ -38,11 +38,12 @@ const rootReducer = createReducer(initialState, {
     state.selectedId = action.payload;
   },
   [addItem]: (state, action) => {
-    const component = action.payload;
+    const { component, options } = action.payload;
     const item = {
       id: nanoid(),
       component,
-      className: "eq-col-2"
+      className: "eq-col-2",
+      options
     };
     if (state.selectedId) {
       addNextToItemByIdRec(state.form, state.selectedId, item);

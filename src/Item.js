@@ -3,6 +3,9 @@ import { Box, Typography } from "@material-ui/core";
 import * as Comps from "./comps";
 import { makeStyles } from "@material-ui/core/styles";
 import cx from "clsx";
+import { useDispatch, useSelector } from "react-redux";
+import { selectSelectedItem } from "./selectors";
+import { selectItem } from "./reducer";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -15,22 +18,21 @@ const DefaultComp = ({ compName }) => (
   <Typography color="error">unknown component type *{compName}*</Typography>
 );
 
-const Item = ({
-  className,
-  component,
-  options,
-  children,
-  onClick,
-  isSelected
-}) => {
+const Item = ({ className, component, options, children, id }) => {
   const classes = useStyles();
-  const TheComp = Comps[component];
+  const dispatch = useDispatch();
+  const { selectedId } = useSelector(selectSelectedItem);
+
+  const TheComp = Comps[component].render;
   return (
     <Box
       className={cx(className, classes.root)}
-      onClick={onClick}
+      onClick={e => {
+        dispatch(selectItem(id));
+        e.stopPropagation();
+      }}
       border={2}
-      borderColor={isSelected ? "primary.main" : "transparent"}
+      borderColor={selectedId === id ? "primary.main" : "transparent"}
     >
       {TheComp ? (
         <TheComp {...options}>{children}</TheComp>
