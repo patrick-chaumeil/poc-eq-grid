@@ -1,4 +1,4 @@
-import { createReducer, createAction } from "@reduxjs/toolkit";
+import { createReducer, createAction, nanoid } from "@reduxjs/toolkit";
 import data from "./data";
 
 export const addItem = createAction("ADD_ITEM");
@@ -10,6 +10,7 @@ const initialState = {
 const rootReducer = createReducer(initialState, {
   [addItem]: (state, action) => {
     const item = {
+      id: nanoid(),
       component: action.payload,
       className: "eq-col"
     };

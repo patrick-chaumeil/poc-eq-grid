@@ -1,4 +1,4 @@
-import { v4 } from "uuid";
+import { nanoid } from "@reduxjs/toolkit";
 
 const data = [
   {
@@ -52,7 +52,11 @@ const data = [
 ];
 
 function addIdRec(d) {
-  return d?.map(item => ({ ...item, id: v4(), items: addIdRec(item.items) }));
+  return d?.map(item => ({
+    ...item,
+    id: nanoid(),
+    items: addIdRec(item.items)
+  }));
 }
 
 export default addIdRec(data);
