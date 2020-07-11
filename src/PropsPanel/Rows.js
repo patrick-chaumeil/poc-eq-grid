@@ -18,32 +18,18 @@ export default () => {
   const classes = useStyles();
   const dispatch = useDispatch();
   const { layout } = useSelector(selectSelectedItem);
-
-  function handleClick(eqRow) {
-    dispatch(setItemLayout({ ...layout, eqRow }));
+  const eqRow = layout?.eqRow;
+  function handleClick(e) {
+    const value = parseInt(e.target.innerText, 10) || undefined;
+    dispatch(setItemLayout({ ...layout, eqRow: value }));
   }
   return (
     <Box className={classes.root}>
       <Typography>Rows</Typography>
-      <ButtonGroup color="primary">
-        <Button
-          variant={!layout?.eqRow && "contained"}
-          onClick={() => handleClick()}
-        >
-          none
-        </Button>
-        <Button
-          variant={layout?.eqRow === 2 && "contained"}
-          onClick={() => handleClick(2)}
-        >
-          2
-        </Button>
-        <Button
-          variant={layout?.eqRow === 3 && "contained"}
-          onClick={() => handleClick(3)}
-        >
-          3
-        </Button>
+      <ButtonGroup color="primary" onClick={handleClick}>
+        <Button variant={!eqRow && "contained"}>none</Button>
+        <Button variant={eqRow === 2 && "contained"}>2</Button>
+        <Button variant={eqRow === 3 && "contained"}>3</Button>
       </ButtonGroup>
     </Box>
   );
