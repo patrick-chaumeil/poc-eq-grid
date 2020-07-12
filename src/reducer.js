@@ -5,10 +5,15 @@ export const selectItem = createAction('SELECT_ITEM')
 export const addItem = createAction('ADD_ITEM')
 export const removeItem = createAction('REMOVE_ITEM')
 export const setItemLayout = createAction('SET_ITEM_LAYOUT')
+export const toggleDisplayOption = createAction('TOGGLE_DISPLAYOPTION')
 
 const initialState = {
   selectedId: undefined,
   form: data,
+  displayOptions: {
+    showContent: true,
+    showName: false,
+  },
 }
 
 function insertIntoItemByIdRec(arr, id, item) {
@@ -97,6 +102,10 @@ const rootReducer = createReducer(initialState, {
   [setItemLayout]: (state, action) => {
     const layout = action.payload
     setLayoutRec(state.form, state.selectedId, layout)
+  },
+  [toggleDisplayOption]: (state, action) => {
+    const { optionName } = action.payload
+    state.displayOptions[optionName] = !state.displayOptions[optionName]
   },
 })
 

@@ -16,7 +16,7 @@ export default function App() {
       flexDirection="row"
       height="100vh"
     >
-      <Box flex={1} m={1} onClick={() => dispatch(selectItem(undefined))}>
+      <Box flex={1} m={2} onClick={() => dispatch(selectItem(undefined))}>
         <Container items={form} />
       </Box>
       <Box width={360}>

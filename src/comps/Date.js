@@ -22,3 +22,5 @@ export default DateComp
 export const render = DateComp
 
 export const defaultOptions = { label: 'Date' }
+
+export const color = 'error.light'

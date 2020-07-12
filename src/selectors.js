@@ -26,3 +26,8 @@ export const selectSelectedItem = createSelector(
     return item
   },
 )
+
+export const selectDisplayOptions = createSelector(
+  [selectDomain],
+  domain => domain.displayOptions,
+)

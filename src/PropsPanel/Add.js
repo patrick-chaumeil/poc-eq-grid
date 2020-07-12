@@ -28,7 +28,6 @@ const Add = () => {
     const shouldInsert = insertRef?.current?.checked
     console.log(insertRef?.current)
     dispatch(addItem({ ...value, shouldInsert }))
-    setAnchorEl(null)
   }
 
   return (

@@ -4,13 +4,18 @@ import * as Comps from './comps'
 import makeStyles from '@material-ui/core/styles/makeStyles'
 import cx from 'clsx'
 import { useDispatch, useSelector } from 'react-redux'
-import { selectSelectedItem } from './selectors'
+import { selectSelectedItem, selectDisplayOptions } from './selectors'
 import { selectItem } from './reducer'
 
 const useStyles = makeStyles(theme => ({
   root: {
+    border: '2px solid transparent',
+    margin: -2, // pour compenser le border
     '&:hover': {
-      backgroundColor: theme.palette.action.hover,
+      borderColor: theme.palette.action.focus,
+    },
+    '&.selected': {
+      borderColor: theme.palette.info.main,
     },
   },
 }))
@@ -21,14 +26,16 @@ const DefaultComp = ({ compName }) => (
 const Item = ({ layout, component, options, children, id }) => {
   const classes = useStyles()
   const dispatch = useDispatch()
+  const { showName, showContent } = useSelector(selectDisplayOptions)
   const { id: selectedId } = useSelector(selectSelectedItem) || {}
   const { eqCol, custom, eqRow } = layout
-  const TheComp = Comps[component].render
+  const { render: TheComp, color, isContainer } = Comps[component] || {}
   return (
     <Box
       className={cx(
         classes.root,
         {
+          selected: selectedId === id,
           [`eq-col-${eqCol}`]: eqCol,
           [`eq-row-${eqRow}`]: eqRow,
         },
@@ -38,11 +45,25 @@ const Item = ({ layout, component, options, children, id }) => {
         dispatch(selectItem(id))
         e.stopPropagation()
       }}
-      border={2}
-      borderColor={selectedId === id ? 'primary.main' : 'transparent'}
     >
-      {TheComp ? (
-        <TheComp {...options}>{children}</TheComp>
+      {Comps[component] ? (
+        <>
+          {showContent ? (
+            <>
+              {showName && <Typography>{component}</Typography>}
+              <TheComp {...options}>{children}</TheComp>
+            </>
+          ) : (
+            <Box
+              height="100%"
+              minHeight={isContainer ? 0 : '1rem'}
+              bgcolor={color}
+            >
+              {showName && <Typography>{component}</Typography>}
+              <Box>{children}</Box>
+            </Box>
+          )}
+        </>
       ) : (
         <DefaultComp compName={component} />
       )}

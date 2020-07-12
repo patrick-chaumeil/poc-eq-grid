@@ -17,3 +17,5 @@ export default Text
 export const render = Text
 
 export const defaultOptions = { label: 'Text', multiline: false }
+
+export const color = 'primary.light'

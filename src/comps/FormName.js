@@ -18,3 +18,5 @@ export default FormName
 export const render = FormName
 
 export const defaultOptions = { label: 'My form name' }
+
+export const color = 'success.light'

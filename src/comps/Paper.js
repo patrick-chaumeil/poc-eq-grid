@@ -15,3 +15,5 @@ export const render = PaperComp
 export const isContainer = true
 
 export const defaultOptions = { label: 'Paper' }
+
+export const color = 'warning.light'
