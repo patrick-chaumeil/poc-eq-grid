@@ -22,4 +22,4 @@ export const isContainer = true
 
 export const defaultOptions = {}
 
-export const color = 'warning.light'
+export const color = 'info.light'
