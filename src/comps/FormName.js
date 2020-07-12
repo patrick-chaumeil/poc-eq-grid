@@ -2,7 +2,7 @@ import React from 'react'
 import { Box, Typography } from '@material-ui/core'
 import { FilterRounded } from '@material-ui/icons'
 
-const FormTitle = ({ label }) => (
+const FormName = ({ label }) => (
   <Box display="flex" alignItems="center">
     <Box display="flex" mr={2}>
       <FilterRounded />
@@ -13,8 +13,8 @@ const FormTitle = ({ label }) => (
   </Box>
 )
 
-export default FormTitle
+export default FormName
 
-export const render = FormTitle
+export const render = FormName
 
 export const defaultOptions = { label: 'My form name' }
