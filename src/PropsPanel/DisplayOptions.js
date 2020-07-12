@@ -22,7 +22,7 @@ const useStyles = makeStyles({
   },
 })
 
-const DisplayMode = () => {
+const DisplayOptions = () => {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null)
   const dispatch = useDispatch()
@@ -57,6 +57,7 @@ const DisplayMode = () => {
           { optionName: 'showName', optionLabel: 'Name' },
         ].map(({ optionName, optionLabel }) => (
           <MenuItem
+            key={optionName}
             selected={displayOptions[optionName]}
             onClick={() => handleSelect(optionName)}
           >
@@ -69,4 +70,4 @@ const DisplayMode = () => {
   )
 }
 
-export default DisplayMode
+export default DisplayOptions
