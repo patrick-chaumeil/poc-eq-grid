@@ -29,7 +29,7 @@ const Item = ({ layout, component, options, children, id }) => {
   const { showName, showContent } = useSelector(selectDisplayOptions)
   const { id: selectedId } = useSelector(selectSelectedItem) || {}
   const { eqCol, custom, eqRow } = layout
-  const { render: TheComp, color, isContainer } = Comps[component] || {}
+  const { render: TheComp, color, isContainer, items } = Comps[component] || {}
   return (
     <Box
       className={cx(
@@ -61,7 +61,7 @@ const Item = ({ layout, component, options, children, id }) => {
           ) : (
             <Box
               height="100%"
-              minHeight={isContainer ? 0 : '3rem'}
+              minHeight={isContainer && !!items ? 0 : '3rem'}
               bgcolor={color}
             >
               {showName && (
