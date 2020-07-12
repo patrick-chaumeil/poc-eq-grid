@@ -45,21 +45,28 @@ const Item = ({ layout, component, options, children, id }) => {
         dispatch(selectItem(id))
         e.stopPropagation()
       }}
+      position="relative"
     >
       {Comps[component] ? (
         <>
           {showContent ? (
             <>
-              {showName && <Typography>{component}</Typography>}
+              {showName && (
+                <Typography variant="caption" color="textSecondary">
+                  {component}
+                </Typography>
+              )}
               <TheComp {...options}>{children}</TheComp>
             </>
           ) : (
             <Box
               height="100%"
-              minHeight={isContainer ? 0 : '1rem'}
+              minHeight={isContainer ? 0 : '3rem'}
               bgcolor={color}
             >
-              {showName && <Typography>{component}</Typography>}
+              {showName && (
+                <Typography variant="caption">{component}</Typography>
+              )}
               <Box>{children}</Box>
             </Box>
           )}
