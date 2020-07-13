@@ -1,12 +1,22 @@
-import React from "react";
-import ReactDOM from "react-dom";
+import React from 'react'
+import ReactDOM from 'react-dom'
+import { Provider } from 'react-redux'
+import { configureStore } from '@reduxjs/toolkit'
+import App from './App'
+import rootReducer from './reducer'
 
-import App from "./App";
+const store = configureStore({
+  reducer: rootReducer,
+})
 
-const rootElement = document.getElementById("root");
-ReactDOM.render(
-  <React.StrictMode>
+const ConnectedApp = () => (
+  <Provider store={store}>
+    {/* <React.StrictMode> */}
     <App />
-  </React.StrictMode>,
-  rootElement
-);
+    {/* </React.StrictMode> */}
+  </Provider>
+)
+
+const rootElement = document.getElementById('root')
+
+ReactDOM.render(<ConnectedApp />, rootElement)
