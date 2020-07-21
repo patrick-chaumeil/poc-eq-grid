@@ -1,4 +1,9 @@
-import { createReducer, createAction, nanoid } from '@reduxjs/toolkit'
+import {
+  createReducer,
+  createAction,
+  nanoid,
+  createAsyncThunk,
+} from '@reduxjs/toolkit'
 import data from './data'
 
 export const selectItem = createAction('SELECT_ITEM')
@@ -6,6 +11,30 @@ export const addItem = createAction('ADD_ITEM')
 export const removeItem = createAction('REMOVE_ITEM')
 export const setItemLayout = createAction('SET_ITEM_LAYOUT')
 export const toggleDisplayOption = createAction('TOGGLE_DISPLAYOPTION')
+
+export const loadForm = createAsyncThunk('loadForm', async (_, thunkAPI) => {
+  console.log('loading')
+  try {
+    const form = JSON.parse(localStorage.getItem('form'))
+    console.log('loaded')
+    return form
+  } catch (err) {
+    alert('load failed')
+    console.error(err)
+  }
+})
+
+export const saveForm = createAsyncThunk('saveForm', async (_, thunkAPI) => {
+  const { form } = thunkAPI.getState()
+  console.log('saving')
+  try {
+    localStorage.setItem('form', JSON.stringify(form))
+    console.log('saved')
+  } catch (err) {
+    alert('save failed')
+    console.error(err)
+  }
+})
 
 const initialState = {
   selectedId: undefined,
@@ -106,6 +135,9 @@ const rootReducer = createReducer(initialState, {
   [toggleDisplayOption]: (state, action) => {
     const { optionName } = action.payload
     state.displayOptions[optionName] = !state.displayOptions[optionName]
+  },
+  [loadForm.fulfilled]: (state, action) => {
+    state.form = action.payload
   },
 })
 

@@ -10,7 +10,7 @@ const Container = ({ items }) => {
     <eq-grid
       className={cx({
         'eq-grid-dense': true,
-        'eq-grid-2-collapse': false,
+        'eq-grid-2-collapse': true,
         'eq-grid-gap-2': false,
       })}
     >

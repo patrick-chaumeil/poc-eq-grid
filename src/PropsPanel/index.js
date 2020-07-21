@@ -8,7 +8,7 @@ import Remove from './Remove'
 import { useSelector } from 'react-redux'
 import { selectSelectedItem } from '../selectors'
 import Custom from './Custom'
-import DisplayOptions from './DisplayOptions'
+import Actions from './Actions'
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -33,7 +33,8 @@ const PropsPanel = () => {
   const selectedItem = useSelector(selectSelectedItem)
   return (
     <Box component={Paper} elevation={4} className={classes.root}>
-      <DisplayOptions />
+      <Actions />
+      <Divider />
       <Box className={classes.buttons}>
         <Add />
         {selectedItem && <Remove />}
